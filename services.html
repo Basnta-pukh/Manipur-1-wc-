@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Services -- Manipur 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-hero {
+  border-radius: var(--radius-lg); padding: 30px 22px; margin: 8px 0 22px;
+  background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%);
+  color: white; box-shadow: 0 16px 40px rgba(30,58,138,0.25);
+}
+.page-hero small { display:inline-block; background:rgba(255,255,255,0.18); font-size:10px; font-weight:700; letter-spacing:2px; padding:5px 12px; border-radius:999px; margin-bottom:14px; }
+.page-hero h1 { font-size:30px; line-height:1.1; margin-bottom:10px; }
+.page-hero p { color:rgba(255,255,255,0.85); font-size:14px; line-height:1.55; max-width:460px; }
+.card-grid { display:grid; gap:14px; grid-template-columns:1fr; }
+.svc-card {
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+  padding:18px; box-shadow: var(--shadow-sm);
+}
+.svc-card-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.svc-icon { width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; color:white; flex-shrink:0; }
+.svc-card h3 { font-size:16px; margin-bottom:2px; }
+.svc-card p { color:var(--text-muted); font-size:13px; line-height:1.55; margin-bottom:14px; }
+.svc-btn {
+  display:block; width:100%; padding:12px; border-radius:12px; background:var(--primary);
+  color:white; font-weight:700; font-size:13px; text-align:center; cursor:pointer; border:none;
+}
+@media (min-width:700px) { .card-grid { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" class="logo">M1</a>
+    <div class="brand-text"><h1>Manipur 1</h1><p>One app. One Manipur.</p></div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
+    <a class="icon-btn" href="profile.html"><span>❤️</span></a>
+  </div>
+</header>
+<main class="container">
+  <section class="page-hero">
+    <small>GOVERNMENT SERVICES</small>
+    <h1>Useful services.<br>One place.</h1>
+    <p>Find official portals, documents and public services in Manipur.</p>
+  </section>
+
+  <div class="section-header" style="margin-top:0;">
+    <div><h3>Government services</h3><p>Tap to search official sources.</p></div>
+  </div>
+
+  <div class="card-grid">
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#0E5C4A,#34D399);">🪪</div>
+        <div><h3>Identity Documents</h3></div>
+      </div>
+      <p>Information about Aadhaar, PAN, Voter ID, Driving License and other ID documents.</p>
+      <button class="svc-btn" onclick="searchGoogle('official India identity documents Aadhaar PAN Voter ID')">Explore →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#B8860B,#E8C34A);">📜</div>
+        <div><h3>Certificates</h3></div>
+      </div>
+      <p>Birth, death, marriage, income, caste and domicile certificate information.</p>
+      <button class="svc-btn" onclick="searchGoogle('Manipur government certificates online application')">Find Services →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#5B21B6,#A78BFA);">🌐</div>
+        <div><h3>Government Portals</h3></div>
+      </div>
+      <p>Official Manipur state and central government websites and online portals.</p>
+      <button class="svc-btn" onclick="searchGoogle('Manipur government official website portal')">Open Search →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#065F46,#10B981);">🤝</div>
+        <div><h3>Public Benefits</h3></div>
+      </div>
+      <p>Welfare schemes, subsidies and public benefit programs for Manipur residents.</p>
+      <button class="svc-btn" onclick="searchGoogle('Manipur government schemes welfare official')">Explore →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#C25E3A,#E8A87C);">💡</div>
+        <div><h3>Utility Services</h3></div>
+      </div>
+      <p>Electricity, water, gas and other public utility services in Manipur.</p>
+      <button class="svc-btn" onclick="searchGoogle('Manipur electricity water utility bill payment')">Find Services →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#9D174D,#F472B6);">☎️</div>
+        <div><h3>Public Help</h3></div>
+      </div>
+      <p>Official helpline numbers and public contact information for Manipur.</p>
+      <button class="svc-btn" onclick="searchGoogle('Manipur government helpline numbers official')">Find Help →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#0F172A,#475569);">🚨</div>
+        <div><h3>Emergency Numbers</h3></div>
+      </div>
+      <p>Police (100), Fire (101), Ambulance (108), Women's helpline (1091) and more.</p>
+      <button class="svc-btn" onclick="searchGoogle('India emergency numbers police fire ambulance')">View Numbers →</button>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon" style="background:linear-gradient(135deg,#1E3A8A,#60A5FA);">🏛️</div>
+        <div><h3>Local Government</h3></div>
+      </div>
+      <p>District administration offices and local governance contact information.</p>
+      <button class="svc-btn" onclick="searchGoogle('Manipur district administration offices')">Find Offices →</button>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:24px;">
+    Manipur 1 does not process applications or verify government records. Always use official government portals.
+  </div>
+</main>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn"><span>⌂</span>Home</a>
+  <a href="tourism.html" class="nav-btn"><span>🏞️</span>Tourism</a>
+  <a href="map.html" class="nav-btn"><span>🗺️</span>Map</a>
+  <a href="explore.html" class="nav-btn"><span>✦</span>Explore</a>
+  <a href="profile.html" class="nav-btn"><span>♙</span>Profile</a>
+</nav>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

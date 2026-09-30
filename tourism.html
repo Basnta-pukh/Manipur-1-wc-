@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Tourism -- Manipur 1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.page-hero {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  margin: 8px 0 24px;
+  color: white;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0E5C4A 0%, #083B2F 100%);
+  box-shadow: 0 16px 40px rgba(14, 92, 74, 0.28);
+}
+.page-hero small {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 16px;
+}
+.page-hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 12px; }
+.page-hero p { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.55; max-width: 480px; }
+
+.filter-row {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  padding: 4px 18px 12px;
+  margin: 0 -18px;
+  scrollbar-width: none;
+}
+.filter-row::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 15px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+.chip:active { transform: scale(0.95); }
+.chip.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.dest-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+
+.dest-card {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.dest-card:active { transform: scale(0.98); }
+.dest-card:hover { box-shadow: var(--shadow-md); }
+
+.dest-card-img {
+  width: 120px;
+  min-height: 120px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 42px;
+  position: relative;
+  overflow: hidden;
+}
+.dest-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; inset: 0;
+}
+
+.dest-card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.dest-card-body h3 { font-size: 16px; margin-bottom: 4px; font-weight: 600; }
+.dest-card-body p {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 6px;
+}
+.dest-meta {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-muted);
+}
+.empty-state h3 { font-size: 20px; color: var(--text); margin-bottom: 8px; }
+
+@media (min-width: 700px) {
+  .dest-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" class="logo">M1</a>
+    <div class="brand-text">
+      <h1>Manipur 1</h1>
+      <p>One app. One Manipur.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <a class="icon-btn" href="profile.html" aria-label="Saved">
+      <span>❤️</span>
+    </a>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <div class="search-box">
+    <span class="search-icon">⌕</span>
+    <input id="searchInput" type="text" placeholder="Search destinations...">
+    <button onclick="performSearch()" class="search-btn">Go</button>
+  </div>
+</div>
+
+<main class="container">
+
+  <section class="page-hero">
+    <small>MANIPUR TOURISM</small>
+    <h1>Discover<br>Manipur.</h1>
+    <p>Lakes, hills, heritage sites, waterfalls, caves and unique local experiences -- all in one place.</p>
+  </section>
+
+  <div class="filter-row" id="filterRow"></div>
+
+  <p style="color:var(--text-muted);font-size:12px;margin-bottom:14px;" id="resultCount"></p>
+
+  <div class="dest-grid" id="destGrid"></div>
+
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <h3>No destinations found</h3>
+    <p>Try a different category or search term.</p>
+  </div>
+
+  <section style="margin-top:40px;">
+    <div class="section-header">
+      <div>
+        <h3>Hidden corners</h3>
+        <span class="section-tagline">Off the usual path</span>
+      </div>
+    </div>
+    <div class="hidden-corners" id="hiddenCorners"></div>
+  </section>
+
+  <div class="note" style="margin-top:24px;">
+    <strong>Travel information:</strong><br>
+    Check local conditions, opening hours and travel guidance before visiting. Information here is being expanded as Manipur 1 develops.
+  </div>
+
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn"><span>⌂</span>Home</a>
+  <a href="tourism.html" class="nav-btn active"><span>🏞️</span>Tourism</a>
+  <a href="map.html" class="nav-btn"><span>🗺️</span>Map</a>
+  <a href="explore.html" class="nav-btn"><span>✦</span>Explore</a>
+  <a href="profile.html" class="nav-btn"><span>♙</span>Profile</a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  let currentCat = params.get('cat') || 'all';
+  let currentQuery = params.get('q') ? params.get('q').toLowerCase() : '';
+
+  if (currentQuery) {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = params.get('q');
+  }
+
+  function renderChips() {
+    const allChip = `
+      <button class="chip ${currentCat === 'all' ? 'active' : ''}"
+              onclick="setCategory('all')">All (${destinations.length})</button>
+    `;
+    const catChips = categories.map(c => {
+      const count = destinations.filter(d => d.category === c.id).length;
+      if (count === 0) return '';
+      return `
+        <button class="chip ${currentCat === c.id ? 'active' : ''}"
+                onclick="setCategory('${c.id}')">${c.icon} ${c.name} (${count})</button>
+      `;
+    }).join('');
+    document.getElementById('filterRow').innerHTML = allChip + catChips;
+  }
+
+  function setCategory(cat) {
+    currentCat = cat;
+    renderChips();
+    renderGrid();
+    const url = new URL(window.location);
+    if (cat === 'all') url.searchParams.delete('cat');
+    else url.searchParams.set('cat', cat);
+    window.history.replaceState({}, '', url);
+  }
+
+  function renderGrid() {
+    let list = destinations;
+    if (currentCat !== 'all') list = list.filter(d => d.category === currentCat);
+    if (currentQuery) {
+      list = list.filter(d => {
+        const haystack = (d.name + ' ' + d.short + ' ' + d.about + ' ' + d.location).toLowerCase();
+        return haystack.includes(currentQuery);
+      });
+    }
+
+    const grid = document.getElementById('destGrid');
+    const empty = document.getElementById('emptyState');
+    const count = document.getElementById('resultCount');
+
+    if (list.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      count.textContent = '';
+      return;
+    }
+
+    empty.style.display = 'none';
+    count.textContent = list.length + (list.length === 1 ? ' destination' : ' destinations');
+
+    grid.innerHTML = list.map(d => `
+      <a href="destination.html?id=${d.id}" class="dest-card">
+        <div class="dest-card-img" style="background:${d.gradient}">
+          ${d.image
+            ? `<img src="${d.image}" alt="${escapeHtml(d.name)}" onerror="this.remove()">`
+            : `<span>${d.icon}</span>`
+          }
+        </div>
+        <div class="dest-card-body">
+          <h3>${escapeHtml(d.name)}</h3>
+          <p>${escapeHtml(d.short)}</p>
+          <div class="dest-meta">📍 ${escapeHtml(d.location)}</div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  function renderHiddenCorners() {
+    const container = document.getElementById('hiddenCorners');
+    container.innerHTML = morePlaces.map(p => `
+      <button class="corner-card" onclick="openMaps('${p.mapQuery}')">
+        <div class="corner-icon" style="background:${p.gradient}">${p.icon}</div>
+        <div class="corner-body">
+          <h4>${escapeHtml(p.name)}</h4>
+          <p>${escapeHtml(p.short)}</p>
+          <div class="corner-meta">Tap to open in Maps</div>
+        </div>
+        <span class="corner-arrow">→</span>
+      </button>
+    `).join('');
+  }
+
+  renderChips();
+  renderGrid();
+  renderHiddenCorners();
+</script>
+
+</body>
+</html>

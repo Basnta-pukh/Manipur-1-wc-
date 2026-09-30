@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Profile -- Manipur 1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.profile-hero {
+  text-align: center;
+  padding: 32px 22px;
+  border-radius: var(--radius-lg);
+  margin: 8px 0 24px;
+  background: linear-gradient(135deg, #0E5C4A 0%, #083B2F 100%);
+  color: white;
+  box-shadow: 0 16px 40px rgba(14, 92, 74, 0.28);
+}
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  color: #0E5C4A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  font-family: 'Fraunces', serif;
+  margin: 0 auto 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.profile-hero h1 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.profile-hero p {
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+.stat-card .num {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: 'Fraunces', serif;
+  color: var(--primary);
+  line-height: 1;
+}
+.stat-card .label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.saved-list {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.saved-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease;
+}
+.saved-card:active { transform: scale(0.98); }
+.saved-card-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.saved-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0;
+}
+.saved-card-body { flex: 1; min-width: 0; }
+.saved-card-body h3 { font-size: 15px; margin-bottom: 3px; }
+.saved-card-body p {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.empty-profile {
+  text-align: center;
+  padding: 50px 24px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+}
+.empty-profile .big {
+  font-size: 50px;
+  margin-bottom: 14px;
+  opacity: 0.4;
+}
+.empty-profile h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+.empty-profile p {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.empty-profile a {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.settings-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.setting-item:last-child { border-bottom: none; }
+.setting-item:active { background: var(--surface-2); }
+.setting-icon {
+  margin-right: 12px;
+  font-size: 18px;
+}
+.setting-left { display: flex; align-items: center; }
+.setting-arrow { color: var(--text-muted); font-size: 16px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" class="logo">M1</a>
+    <div class="brand-text">
+      <h1>Manipur 1</h1>
+      <p>One app. One Manipur.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="profile-hero">
+    <div class="profile-avatar">M1</div>
+    <h1>Your Profile</h1>
+    <p>Saved places, preferences & settings</p>
+  </section>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num" id="savedCount">0</div>
+      <div class="label">Saved places</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">27</div>
+      <div class="label">Destinations available</div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:0;">
+    <div>
+      <h3>❤️ Saved Places</h3>
+      <p>Places you've saved to visit later.</p>
+    </div>
+  </div>
+
+  <div id="savedList"></div>
+
+  <div class="section-header" style="margin-top:32px;">
+    <div>
+      <h3>Settings</h3>
+      <p>App preferences and information.</p>
+    </div>
+  </div>
+
+  <div class="settings-list">
+    <a class="setting-item" href="#" onclick="toggleTheme();return false;">
+      <div class="setting-left">
+        <span class="setting-icon">🌙</span>
+        <span>Toggle dark mode</span>
+      </div>
+      <span class="setting-arrow">›</span>
+    </a>
+    <a class="setting-item" href="tourism.html">
+      <div class="setting-left">
+        <span class="setting-icon">🏞️</span>
+        <span>Explore destinations</span>
+      </div>
+      <span class="setting-arrow">›</span>
+    </a>
+    <a class="setting-item" href="map.html">
+      <div class="setting-left">
+        <span class="setting-icon">🗺️</span>
+        <span>Open map</span>
+      </div>
+      <span class="setting-arrow">›</span>
+    </a>
+    <a class="setting-item" href="#" onclick="clearSaved();return false;">
+      <div class="setting-left">
+        <span class="setting-icon">🗑️</span>
+        <span>Clear all saved places</span>
+      </div>
+      <span class="setting-arrow">›</span>
+    </a>
+    <a class="setting-item" href="#" onclick="aboutApp();return false;">
+      <div class="setting-left">
+        <span class="setting-icon">ℹ️</span>
+        <span>About Manipur 1</span>
+      </div>
+      <span class="setting-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="note" style="margin-top:24px;">
+    <strong>Coming soon</strong><br>
+    Accounts · Notifications · Local business profiles ·
+    Payments · Multi-language (Meitei Mayek) support.
+  </div>
+
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn">
+    <span>⌂</span>
+    Home
+  </a>
+  <a href="tourism.html" class="nav-btn">
+    <span>🏞️</span>
+    Tourism
+  </a>
+  <a href="map.html" class="nav-btn">
+    <span>🗺️</span>
+    Map
+  </a>
+  <a href="explore.html" class="nav-btn">
+    <span>✦</span>
+    Explore
+  </a>
+  <a href="profile.html" class="nav-btn active">
+    <span>♙</span>
+    Profile
+  </a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  function renderSaved() {
+    const savedIds = getSaved();
+    const saved = savedIds.map(getDestination).filter(Boolean);
+
+    document.getElementById('savedCount').textContent = saved.length;
+
+    const container = document.getElementById('savedList');
+
+    if (saved.length === 0) {
+      container.innerHTML = `
+        <div class="empty-profile">
+          <div class="big">🤍</div>
+          <h3>No saved places yet</h3>
+          <p>Tap the Save button on any destination to add it here.</p>
+          <a href="tourism.html">Explore destinations →</a>
+        </div>
+      `;
+      return;
+    }
+
+    container.className = 'saved-list';
+    container.innerHTML = saved.map(d => `
+      <div class="saved-card">
+        <a href="destination.html?id=${d.id}" class="saved-card-img" style="background:${d.gradient}">
+          ${d.image
+            ? `<img src="${d.image}" alt="${escapeHtml(d.name)}" onerror="this.remove()">`
+            : `<span>${d.icon}</span>`
+          }
+        </a>
+        <a href="destination.html?id=${d.id}" class="saved-card-body">
+          <h3>${escapeHtml(d.name)}</h3>
+          <p>${escapeHtml(d.short)}</p>
+        </a>
+        <button class="remove-btn" onclick="removeSaved('${d.id}')" aria-label="Remove">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function removeSaved(id) {
+    toggleSave(id);
+    renderSaved();
+  }
+
+  function clearSaved() {
+    if (confirm('Remove all saved places?')) {
+      localStorage.setItem('m1_saved', '[]');
+      renderSaved();
+    }
+  }
+
+  function aboutApp() {
+    alert(
+      'Manipur 1 -- One app. One Manipur.\\n\\n' +
+      'A platform to connect people, places, businesses, students, and ' +
+      'opportunities across Manipur.\\n\\n' +
+      'Currently in development.'
+    );
+  }
+
+  renderSaved();
+</script>
+
+</body>
+</html>

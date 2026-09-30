@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Destination -- Manipur 1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* Destination hero */
+.dest-hero {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 120px 22px 26px;
+  margin: 8px 0 20px;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.dest-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
+}
+.dest-hero > * { position: relative; z-index: 2; }
+
+.dest-hero .hero-icon-big {
+  position: absolute;
+  top: 30px; right: 30px;
+  font-size: 70px;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.dest-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.dest-hero small {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+.dest-hero h1 {
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.dest-hero p {
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+/* Info pills row */
+.info-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.info-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.info-pill .label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.info-pill .value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+/* Content sections */
+.dest-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.dest-section h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.dest-section p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.dest-section ul {
+  list-style: none;
+  padding: 0;
+}
+.dest-section ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  font-size: 14px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.dest-section ul li:last-child { border-bottom: none; }
+.dest-section ul li::before {
+  content: '◆';
+  color: var(--primary);
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* Actions */
+.action-row {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 15px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+.action-btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 8px 20px rgba(14, 92, 74, 0.25);
+}
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-save {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-save.saved {
+  background: #E8F3EF;
+  color: #0E5C4A;
+  border-color: #0E5C4A;
+}
+
+/* Back link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.back-link:active { opacity: 0.7; }
+
+/* Not found state */
+.not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+.not-found h2 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.not-found p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+@media (min-width: 700px) {
+  .info-row { grid-template-columns: repeat(4, 1fr); }
+  .action-row { grid-template-columns: 1fr 1fr; }
+  .dest-hero h1 { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" class="logo">M1</a>
+    <div class="brand-text">
+      <h1>Manipur 1</h1>
+      <p>One app. One Manipur.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <a class="icon-btn" href="profile.html" aria-label="Saved places">
+      <span>❤️</span>
+    </a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="container" id="mainContent">
+  <!-- Filled by JS -->
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn">
+    <span>⌂</span>
+    Home
+  </a>
+  <a href="tourism.html" class="nav-btn active">
+    <span>🏞️</span>
+    Tourism
+  </a>
+  <a href="map.html" class="nav-btn">
+    <span>🗺️</span>
+    Map
+  </a>
+  <a href="explore.html" class="nav-btn">
+    <span>✦</span>
+    Explore
+  </a>
+  <a href="profile.html" class="nav-btn">
+    <span>♙</span>
+    Profile
+  </a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Read ?id= from the URL
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const dest = id ? getDestination(id) : null;
+
+  const main = document.getElementById('mainContent');
+
+  if (!dest) {
+    // Destination not found
+    document.title = 'Not found -- Manipur 1';
+    main.innerHTML = `
+      <div class="not-found">
+        <h2>Destination not found</h2>
+        <p>We couldn't find that place. Try exploring from the tourism page.</p>
+        <a href="tourism.html" class="action-btn btn-primary">← Back to Tourism</a>
+      </div>
+    `;
+  } else {
+    // Set page title to the destination name
+    document.title = dest.name + ' -- Manipur 1';
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0E5C4A');
+
+    const saved = isSaved(dest.id);
+
+    main.innerHTML = `
+      <a href="tourism.html" class="back-link">← Back to Tourism</a>
+
+      <section class="dest-hero" style="background:${dest.gradient}">
+        <div class="hero-icon-big">${dest.icon}</div>
+        ${dest.image ? `<img class="dest-hero-img" src="${dest.image}" alt="${escapeHtml(dest.name)}" onerror="this.remove()">` : ''}
+        <small>MANIPUR • ${escapeHtml(dest.category.toUpperCase())}</small>
+        <h1>${escapeHtml(dest.name)}</h1>
+        <p>${escapeHtml(dest.short)}</p>
+      </section>
+
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="label">📍 Location</div>
+          <div class="value">${escapeHtml(dest.location)}</div>
+        </div>
+        <div class="info-pill">
+          <div class="label">🚗 From Imphal</div>
+          <div class="value">${escapeHtml(dest.distanceFromImphal)}</div>
+        </div>
+        <div class="info-pill">
+          <div class="label">🌤️ Best Time</div>
+          <div class="value">${escapeHtml(dest.bestTime)}</div>
+        </div>
+        <div class="info-pill">
+          <div class="label">🏷️ Category</div>
+          <div class="value">${escapeHtml(dest.category.charAt(0).toUpperCase() + dest.category.slice(1))}</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="action-btn btn-save ${saved ? 'saved' : ''}"
+                data-save-btn="${dest.id}"
+                onclick="toggleSave('${dest.id}')">
+          ${saved ? '💚 Saved' : '🤍 Save'}
+        </button>
+        <button class="action-btn btn-primary"
+                onclick="openMaps('${escapeHtml(dest.mapQuery)}')">
+          📍 Open in Google Maps
+        </button>
+      </div>
+
+      <section class="dest-section">
+        <h2>About ${escapeHtml(dest.name)}</h2>
+        <p>${escapeHtml(dest.about)}</p>
+      </section>
+
+      <section class="dest-section">
+        <h2>Highlights</h2>
+        <ul>
+          ${dest.highlights.map(h => `<li>${escapeHtml(h)}</li>`).join('')}
+        </ul>
+      </section>
+
+      <section class="dest-section">
+        <h2>Plan your visit</h2>
+        <p>
+          Best time to visit is <strong>${escapeHtml(dest.bestTime)}</strong>.
+          Located in <strong>${escapeHtml(dest.location)}</strong>, about
+          <strong>${escapeHtml(dest.distanceFromImphal)}</strong> from Imphal.
+        </p>
+      </section>
+
+      <a href="tourism.html" class="action-btn btn-secondary" style="margin-bottom:24px;">
+        ← Explore more destinations
+      </a>
+
+      <div class="note">
+        <strong>Travel tip:</strong><br>
+        Check local conditions, opening hours and travel guidance before
+        visiting. Information here is being expanded and verified as
+        Manipur 1 develops.
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>

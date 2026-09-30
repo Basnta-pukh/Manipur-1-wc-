@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Map -- Manipur 1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.map-hero {
+  border-radius: var(--radius-lg);
+  padding: 32px 22px;
+  margin: 8px 0 22px;
+  background: linear-gradient(135deg, #1E3A8A 0%, #0E5C4A 100%);
+  color: white;
+  box-shadow: 0 16px 40px rgba(30, 58, 138, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.map-hero::after {
+  content: '🗺️';
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 60px;
+  opacity: 0.25;
+}
+.map-hero small {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  padding: 5px 12px; border-radius: 999px;
+  margin-bottom: 14px;
+}
+.map-hero h1 {
+  font-size: 30px; line-height: 1.1; margin-bottom: 10px;
+}
+.map-hero p {
+  color: rgba(255,255,255,0.8);
+  font-size: 14px; line-height: 1.55;
+  max-width: 460px;
+}
+
+.map-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 24px;
+}
+.map-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.map-card:active { transform: scale(0.96); }
+.map-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.map-card strong {
+  display: block;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.map-card span {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" class="logo">M1</a>
+    <div class="brand-text">
+      <h1>Manipur 1</h1>
+      <p>One app. One Manipur.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <a class="icon-btn" href="profile.html" aria-label="Saved">
+      <span>❤️</span>
+    </a>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="map-hero">
+    <small>MANIPUR MAP</small>
+    <h1>Find your way<br>around Manipur.</h1>
+    <p>
+      Tap any category below and we'll open the right Google Maps search
+      for you -- tourist spots, food, hotels, markets, and more.
+    </p>
+  </section>
+
+  <div class="section-header" style="margin-top:0;">
+    <div>
+      <h3>Explore by category</h3>
+      <p>Tap to open in Google Maps</p>
+    </div>
+  </div>
+
+  <div class="map-grid">
+    <div class="map-card" onclick="openMaps('tourist places in Manipur')">
+      <div class="map-icon">📍</div>
+      <strong>Tourist Spots</strong>
+      <span>Popular destinations</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('Loktak Lake Manipur')">
+      <div class="map-icon">🌊</div>
+      <strong>Loktak Lake</strong>
+      <span>Iconic lake</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('Kangla Fort Imphal Manipur')">
+      <div class="map-icon">🏯</div>
+      <strong>Kangla Fort</strong>
+      <span>Heritage site</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('restaurants in Imphal Manipur')">
+      <div class="map-icon">🍽️</div>
+      <strong>Restaurants</strong>
+      <span>Where to eat</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('cafes in Imphal Manipur')">
+      <div class="map-icon">☕</div>
+      <strong>Cafés</strong>
+      <span>Chill spots</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('hotels in Imphal Manipur')">
+      <div class="map-icon">🏨</div>
+      <strong>Hotels</strong>
+      <span>Where to stay</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('markets shops Imphal Manipur')">
+      <div class="map-icon">🛍️</div>
+      <strong>Markets</strong>
+      <span>Shopping areas</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('hospitals in Imphal Manipur')">
+      <div class="map-icon">🏥</div>
+      <strong>Hospitals</strong>
+      <span>Emergency & clinics</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('petrol pumps in Manipur')">
+      <div class="map-icon">⛽</div>
+      <strong>Petrol Pumps</strong>
+      <span>Fuel stations</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('ATMs in Imphal Manipur')">
+      <div class="map-icon">🏧</div>
+      <strong>ATMs</strong>
+      <span>Cash points</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('pharmacies in Imphal Manipur')">
+      <div class="map-icon">💊</div>
+      <strong>Pharmacies</strong>
+      <span>Medicines</span>
+    </div>
+
+    <div class="map-card" onclick="openMaps('police stations in Imphal Manipur')">
+      <div class="map-icon">🚓</div>
+      <strong>Police</strong>
+      <span>Safety & help</span>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <div>
+      <h3>Open wider search</h3>
+      <p>Explore all of Manipur on the map.</p>
+    </div>
+  </div>
+
+  <button class="action-btn btn-primary" style="width:100%;margin-bottom:12px;"
+          onclick="openMaps('Manipur India')">
+    🗺️ Open Manipur on Google Maps
+  </button>
+
+  <button class="action-btn btn-secondary" style="width:100%;margin-bottom:24px;"
+          onclick="searchGoogle('Manipur tourism places')">
+    🔎 Search Google for Manipur tourism
+  </button>
+
+  <div class="note">
+    The current version uses Google Maps. A built-in offline map will be
+    added in a future update.
+  </div>
+
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn">
+    <span>⌂</span>
+    Home
+  </a>
+  <a href="tourism.html" class="nav-btn">
+    <span>🏞️</span>
+    Tourism
+  </a>
+  <a href="map.html" class="nav-btn active">
+    <span>🗺️</span>
+    Map
+  </a>
+  <a href="explore.html" class="nav-btn">
+    <span>✦</span>
+    Explore
+  </a>
+  <a href="profile.html" class="nav-btn">
+    <span>♙</span>
+    Profile
+  </a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

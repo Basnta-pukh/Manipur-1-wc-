@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Culture of Manipur -- Manipur 1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.culture-hero {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 34px 22px;
+  margin: 8px 0 22px;
+  background: linear-gradient(135deg, #5B21B6 0%, #9D174D 100%);
+  color: white;
+  box-shadow: 0 16px 40px rgba(91, 33, 182, 0.3);
+  overflow: hidden;
+}
+.culture-hero::after {
+  content: '🎭';
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 70px;
+  opacity: 0.25;
+}
+.culture-hero small {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  padding: 5px 12px; border-radius: 999px;
+  margin-bottom: 14px;
+}
+.culture-hero h1 { font-size: 30px; line-height: 1.1; margin-bottom: 10px; }
+.culture-hero p {
+  color: rgba(255,255,255,0.82);
+  font-size: 14px; line-height: 1.55;
+  max-width: 480px;
+}
+
+/* Topic selector */
+.topic-row {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  padding: 4px 18px 12px;
+  margin: 0 -18px;
+  scrollbar-width: none;
+}
+.topic-row::-webkit-scrollbar { display: none; }
+.topic-chip {
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 15px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.topic-chip.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Culture cards */
+.culture-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  margin-bottom: 24px;
+}
+.culture-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease;
+}
+.culture-card:active { transform: scale(0.98); }
+
+.culture-card-top {
+  padding: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.culture-icon { font-size: 34px; }
+.culture-card-top h3 { font-size: 17px; color: white; }
+.culture-card-top p { font-size: 11px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+
+.culture-card-body {
+  padding: 16px;
+}
+.culture-card-body p {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (min-width: 700px) {
+  .culture-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" class="logo">M1</a>
+    <div class="brand-text">
+      <h1>Manipur 1</h1>
+      <p>One app. One Manipur.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <a class="icon-btn" href="profile.html" aria-label="Saved">
+      <span>❤️</span>
+    </a>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="culture-hero">
+    <small>CULTURE OF MANIPUR</small>
+    <h1>The soul of<br>Manipur.</h1>
+    <p>
+      Traditions, festivals, cuisine, crafts, dance, sports and language --
+      everything that makes Manipur one of India's most vibrant cultures.
+    </p>
+  </section>
+
+  <div class="topic-row" id="topicRow"></div>
+
+  <p style="color:var(--text-muted);font-size:12px;margin-bottom:14px;" id="resultCount"></p>
+
+  <div class="culture-grid" id="cultureGrid"></div>
+
+  <div class="note" style="margin-bottom:24px;">
+    <strong>About this content:</strong><br>
+    Manipur's culture is rich and diverse -- this is a starting guide.
+    Full detail on each tradition, festival and craft will be expanded over time.
+  </div>
+
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn"><span>⌂</span>Home</a>
+  <a href="tourism.html" class="nav-btn"><span>🏞️</span>Tourism</a>
+  <a href="map.html" class="nav-btn"><span>🗺️</span>Map</a>
+  <a href="explore.html" class="nav-btn active"><span>✦</span>Explore</a>
+  <a href="profile.html" class="nav-btn"><span>♙</span>Profile</a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Build the topic list from data
+  const topics = [
+    { id: 'traditions', label: '🎭 Traditions',  data: traditions },
+    { id: 'festivals',  label: '🎉 Festivals',   data: culturalFestivals },
+    { id: 'cuisine',    label: '🍲 Cuisine',     data: cuisine },
+    { id: 'crafts',     label: '🧵 Crafts',      data: crafts },
+    { id: 'dance',      label: '💃 Dance & Music', data: danceMusic },
+    { id: 'sports',     label: '🏹 Sports',      data: sports },
+    { id: 'language',   label: '🗣️ Language',    data: language }
+  ];
+
+  let activeTopic = 'traditions';
+
+  function renderChips() {
+    document.getElementById('topicRow').innerHTML = topics.map(t => `
+      <button class="topic-chip ${activeTopic === t.id ? 'active' : ''}"
+              onclick="setTopic('${t.id}')">${t.label}</button>
+    `).join('');
+  }
+
+  function setTopic(id) {
+    activeTopic = id;
+    renderChips();
+    renderGrid();
+  }
+
+  function renderGrid() {
+    const topic = topics.find(t => t.id === activeTopic);
+    if (!topic) return;
+
+    const grid = document.getElementById('cultureGrid');
+    const count = document.getElementById('resultCount');
+
+    grid.innerHTML = topic.data.map(item => `
+      <div class="culture-card">
+        <div class="culture-card-top" style="background:${item.gradient}">
+          <div class="culture-icon">${item.icon}</div>
+          <div>
+            <h3>${escapeHtml(item.name)}</h3>
+            <p>${escapeHtml(item.short)}</p>
+          </div>
+        </div>
+        <div class="culture-card-body">
+          <p>${escapeHtml(item.about)}</p>
+          ${item.when ? `<p style="margin-top:10px;color:var(--primary);font-weight:700;font-size:11px;">📅 ${escapeHtml(item.when)}</p>` : ''}
+        </div>
+      </div>
+    `).join('');
+
+    count.textContent = topic.data.length + ' items in ' + topic.label.replace(/^[^\s]+\s/, '');
+  }
+
+  renderChips();
+  renderGrid();
+</script>
+
+</body>
+</html>

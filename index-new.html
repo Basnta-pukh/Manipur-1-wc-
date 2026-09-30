@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A">
+<title>Manipur 1 -- One app. One Manipur.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">M1</div>
+    <div class="brand-text">
+      <h1>Manipur 1</h1>
+      <p>One app. One Manipur.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <a class="icon-btn" href="profile.html" aria-label="Saved places">
+      <span>❤️</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ SEARCH ============ -->
+<div class="search-wrap">
+  <div class="search-box">
+    <span class="search-icon">⌕</span>
+    <input id="searchInput" type="text" placeholder="Search destinations, food, jobs...">
+    <button onclick="performSearch()" class="search-btn">Go</button>
+  </div>
+</div>
+
+<!-- ============ MAIN ============ -->
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero-editorial">
+    <div class="hero-badge">EXPLORE MANIPUR</div>
+    <h2 class="hero-title">
+      Land of jewels,<br>
+      lakes, and legends.
+    </h2>
+    <p class="hero-subtitle">
+      Discover India's hidden gem in the Northeast -- from the floating
+      islands of Loktak to the misty hills of Ukhrul.
+    </p>
+    <a href="tourism.html" class="hero-cta">
+      Start exploring <span>→</span>
+    </a>
+    <div class="hero-pattern"></div>
+  </section>
+
+  <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+      <a href="tourism.html" class="quick-action">
+        <div class="qa-icon">🏞️</div>
+        <strong>Explore</strong>
+      </a>
+      <a href="map.html" class="quick-action">
+        <div class="qa-icon">🗺️</div>
+        <strong>Map</strong>
+      </a>
+      <a href="jobs.html" class="quick-action">
+        <div class="qa-icon">💼</div>
+        <strong>Jobs</strong>
+      </a>
+      <a href="culture.html" class="quick-action">
+        <div class="qa-icon">🎭</div>
+        <strong>Culture</strong>
+      </a>
+      <a href="businesses.html" class="quick-action">
+        <div class="qa-icon">🏪</div>
+        <strong>Businesses</strong>
+      </a>
+      <a href="services.html" class="quick-action">
+        <div class="qa-icon">🪪</div>
+        <strong>Services</strong>
+      </a>
+    </div>
+  </section>
+
+  <!-- PLACES WORTH REMEMBERING  -->
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <h3>Places Worth Remembering</h3>
+        <p>Handpicked for this season</p>
+      </div>
+      <a href="tourism.html" class="see-all">See all →</a>
+    </div>
+    <div class="hscroll" id="featuredScroll"></div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <h3>Find Your Kind of Manipur</h3>
+        <p>Find your kind of adventure.</p>
+      </div>
+    </div>
+    <div class="category-grid" id="categoryGrid"></div>
+  </section>
+
+  <!-- FESTIVALS -->
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <h3>Festivals & Events</h3>
+        <p>What's Happening Soon</p>
+      </div>
+      <a href="explore.html" class="see-all">See all →</a>
+    </div>
+    <div class="hscroll" id="festivalScroll"></div>
+  </section>
+
+  <!-- OPPORTUNITIES -->
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <h3>Build Your Future Here</h3>
+        <p>Careers, Skills & Study</p>
+      </div>
+      <a href="jobs.html" class="see-all">View all →</a>
+    </div>
+    <div class="hscroll">
+      <div class="opp-card">
+        <small>CAREERS</small>
+        <h4>Government Jobs</h4>
+        <p>Find recruitment information and official opportunities across Manipur.</p>
+        <a href="jobs.html">Explore jobs →</a>
+      </div>
+      <div class="opp-card">
+        <small>STUDENTS</small>
+        <h4>Scholarships</h4>
+        <p>Discover scholarships and education opportunities for Manipuri students.</p>
+        <a href="student.html">Explore →</a>
+      </div>
+      <div class="opp-card">
+        <small>SKILLS</small>
+        <h4>Learn New Skills</h4>
+        <p>Explore courses and resources to improve your skills and career.</p>
+        <a href="student.html">Learn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION BANNER -->
+  <section class="vision-banner">
+    <small>THE VISION</small>
+    <h3>Let's build Manipur together.</h3>
+    <p>
+      Manipur 1 connects people, places, businesses, students,
+      and opportunities through one useful platform -- made by
+      Manipur, for Manipur.
+    </p>
+    <a href="explore.html" class="vision-cta">Explore Manipur →</a>
+  </section>
+
+  <!-- NOTE -->
+  <div class="note">
+    <strong>Manipur 1 is growing.</strong><br>
+    This is an early version. Live listings, verified businesses,
+    real-time jobs, and news will be added as the platform develops.
+  </div>
+
+</main>
+
+<!-- ============ BOTTOM NAV ============ -->
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-btn active">
+    <span>⌂</span>
+    Home
+  </a>
+  <a href="tourism.html" class="nav-btn">
+    <span>🏞️</span>
+    Tourism
+  </a>
+  <a href="map.html" class="nav-btn">
+    <span>🗺️</span>
+    Map
+  </a>
+  <a href="explore.html" class="nav-btn">
+    <span>✦</span>
+    Explore
+  </a>
+  <a href="profile.html" class="nav-btn">
+    <span>♙</span>
+    Profile
+  </a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Render the featured destinations
+  const featuredDestinations = destinations.filter(d => d.featured).slice(0, 6);
+  document.getElementById('featuredScroll').innerHTML =
+    featuredDestinations.map(renderDestinationCard).join('');
+
+  // Render the categories
+  document.getElementById('categoryGrid').innerHTML = categories.map(c => `
+    <a href="tourism.html?cat=${c.id}" class="category-card cat-${c.id}">
+      <div class="cat-icon">${c.icon}</div>
+      <strong>${c.name}</strong>
+      <span>${c.desc}</span>
+    </a>
+  `).join('');
+
+  // Render the festivals
+  document.getElementById('festivalScroll').innerHTML =
+    festivals.map(renderFestivalCard).join('');
+</script>
+
+</body>
+</html>
